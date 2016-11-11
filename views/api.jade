@@ -1,0 +1,45 @@
+extend index
+block content
+    div(class="container-fluid")
+        div(class="row")
+            form(role="form")
+                div(class="col-sm-12 col-md-4 col-lg-3 form-horizontal")
+                    div(class="form-group")
+                        label(class="col-sm-2 control-label") No.
+                        div(class="col-sm-10")
+                            input(type="text" class="form-control fn-readonly-bg" readonly value="CMS-11019101")
+                div(class="col-sm-12 col-md-4 col-lg-3 form-horizontal")
+                    div(class="form-group")
+                        label(class="col-sm-2 control-label") Tag:
+                        div(class="col-sm-10")
+                            input(type="text" class="form-control" placeholder="The api tag")
+                div(class="col-sm-6 col-md-4 col-lg-3 form-horizontal")
+                    div(class="form-group")
+                        label(class="col-sm-2 control-label") type:
+                        div(class="col-sm-10")
+                            select(class="form-control")
+                                option(value="get") GET
+                                option(value="post") POST
+                                option(value="put") PUT
+                                option(value="delete") DELETE
+                div(class="col-sm-6 col-md-4 col-lg-3")
+                    button(class="btn btn-info") Change
+                    button(class="btn btn-default") Cancle
+                    button(class="btn btn-success") Save
+                    button(class="btn btn-danger") Delete
+                div(class="col-sm-12 form")
+                    div(class="form-group")
+                        label URI
+                        input(type="text" class="form-control" placeholder="The api request uri")
+                div(class="col-sm-12 form")
+                    div(class="form-group")
+                        label Description
+                        textarea(type="text" style="resize:vertical" class="form-control" placeholder="The api description")
+                div(class="col-sm-12 col-md-6 form")
+                    div(class="form-group")
+                        label RequestParams
+                        textarea(type="text" style="resize:none" class="form-control" rows="20" placeholder="The request params. Data type is JSON.")
+                div(class="col-sm-12 col-md-6 form")
+                    div(class="form-group")
+                        label ResponseParams
+                        textarea(type="text" style="resize:none" class="form-control" rows="20" placeholder="The response params. Data type is JSON.")
