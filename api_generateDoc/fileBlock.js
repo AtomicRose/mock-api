@@ -61,6 +61,20 @@ function matchLine(str){
     for(let key in tagRegex.match){
         var tempArray = str.match(tagRegex.match[key]);
         if(tempArray){
+            if(key == 'param'){
+                var tempVal = tempArray[0].replace(tagRegex.operate[key], '');
+                var valObj = {};
+                for(let k in tagRegex.paramMatch){
+                    var ta = tempVal.match(tagRegex.paramMatch[k]);
+                    if(ta){
+                        valObj[k] = ta[0].replace(tagRegex.paramOperate[k], '').replace(/\}/,'');
+                    }
+                }
+                return {
+                    tag: key,
+                    value: valObj
+                }
+            }
             return {
                 tag: key,
                 value: tempArray[0].replace(tagRegex.operate[key], '')

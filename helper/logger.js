@@ -4,9 +4,6 @@ const util = require('util');
 let logger = {};
 let toString = (o)=> {
     let  obj = o;
-    if(typeof obj === 'object' && obj.length){
-        return '['+obj.toString()+']';
-    }
     if(typeof obj === 'object'){
         return JSON.stringify(obj);
     }
