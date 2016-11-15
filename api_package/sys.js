@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var doc = require('../api_generateDoc/doc');
+var fileBlock = require('../api_generateDoc/fileBlock');
 
 
 /* GET home page. */
 router.get('/getApiList/:apiSys', function (req, res, next) {
     var reqBody = req.query;
-    doc.create('api_package/cms.js', '/api/cms', function (data) {
+    fileBlock.get('api_package/cms.js', function (data) {
         res.json({
             status: 'ok',
             errorCode: '000000',

@@ -9,6 +9,7 @@ const tagRegex = {
         param: /\*\s*\@param.*/g,
         extra: /\*\s*\@extra.*/g,
         uri: /\*\s*\@uri.*/g,
+        method: /\*\s*\@method.*/g
         //uri: /(?:get|post|delete|put)\((?:\'|\")+(?:\w|\/|\\)*(?:\'|\")+\s*\,\s*function/g,
     },
     operate: {
@@ -19,6 +20,7 @@ const tagRegex = {
         param: /\*\s*\@param\s*/g,
         extra: /\*\s*\@extra\s*/g,
         uri: /\*\s*\@uri\s*/g,
+        method: /\*\s*\@method\s*/g
         //uri1: /(?:get|post|delete|put)\((?:\'|\")+/g,
         //uri2: /(?:\'|\")+\s*\,\s*function/g
     }

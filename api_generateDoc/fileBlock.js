@@ -11,10 +11,10 @@ fileBlock.get = (filePath, callback)=> {
         if (err) {
             logger.error(err);
         }
-        readIt(fd, callback);
+        readIt(fd, filePath, callback);
     });
 };
-function readIt(fd, callback) {
+function readIt(fd, filePath, callback) {
     let buf = new Buffer(64);
     let readBytes = 0;
     let content = '';
@@ -22,7 +22,7 @@ function readIt(fd, callback) {
     let result = [];
     _read();
     function _read() {
-        fs.read(fd, buf, 0, buf.length, null, (err, bytes, buf)=> {
+        fs.read(fd, buf, 0, buf.length, null, function(err, bytes, buf) {
             if (err) {
                 logger.error(err);
             }
@@ -48,7 +48,7 @@ function readIt(fd, callback) {
             if (bytes === buf.length) {
                 _read();
             } else {
-                callback(result);
+                callback(result, filePath);
                 fs.close(fd, function () {
                     logger.info('close success');
                 });
@@ -70,8 +70,8 @@ function matchLine(str){
     return false;
 }
 
-fileBlock.get('api_package/cms.js', function (data) {
-    logger.debug(data.length);
-});
+// fileBlock.get('../api_package/cms.js', function (data) {
+//     logger.debug(data.length);
+// });
 
 module.exports = fileBlock;
