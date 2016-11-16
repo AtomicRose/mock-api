@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'generate_file')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // the page route use
 app.use('/', routes);
