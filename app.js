@@ -4,42 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var ejs = require('ejs');
 
 // the page routes require
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var api_cms = require('./api_package/cms');
 var api_sys = require('./api_package/sys');
 
 var app = express();
 
-// //register the view engine
-// var fs = require('fs');
-// app.engine('html', function(filePath, options, callback){
-//     fs.readFile(filePath, function(err, content){
-//         if(err){
-//             return callback(new Error(err));
-//         }else{
-//             var htmlStr = content.toString();
-//             //replace the init page params.
-//             for(key in options.ntlData){
-//                 eval('var reg = \/\<\%\=\\s\*'+key.toString()+'\\s\*\>\/g');
-//                 htmlStr = htmlStr.replace(reg, options.ntlData[key]);
-//             }
-//             //then, replace the extended page & the include block;
-//             var extendMatchArray = content.match(/\@extend\s[a-z,A-Z,0-9]*/);
-//             for(var i=0,len=extendMatchArray.length;i<len; i++){
-//                 var temp = extendMatchArray[i];
-//                 extendMatchArray[i]= temp.split('@extend ')[1];
-//             }
-//             return callback(null, htmlStr);
-//         }
-//     });
-// });
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
+app.engine('html',ejs.renderFile);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -54,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'generate_file')));
 
 // the page route use
 app.use('/', routes);
-app.use('/users', users);
 
 // the api route use
 app.use('/api/cms', api_cms);

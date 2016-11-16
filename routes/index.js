@@ -9,19 +9,18 @@ router.get('/', function (req, res, next) {
     });
 });
 /* GET doc page*/
-router.get('/doc', function (req, res, next) {
+router.get('/document', function (req, res, next) {
     res.render('doc', {
-        title: 'doc,',
-        name: 'Jack'
+        title: 'doc'
     });
 });
 /**
  * GET api
  * @type {String}
  */
-router.get('/doc/:productId', function (req, res, next) {
+router.get('/document/api', function (req, res, next) {
     res.render('api', {
-        title: 'api-' + req.params.productId
+        title: 'api-doc'
     });
 });
 
