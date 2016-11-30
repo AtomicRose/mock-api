@@ -15,6 +15,7 @@ var plugins = [];
 
 plugins.push(new HtmlWebpackPlugin({
     title: "mock-api",
+    favicon: "./app/images/ico/favico.ico",
     template: path.resolve(__dirname, 'app/index.html'),
     inject: true,
     hash: true
@@ -45,7 +46,8 @@ var config = {
                 query: {
                     presets: ['react', 'es2015']
                 }
-            }
+            },
+            {test: /\.(jpg|png|gif)$/, loader: "url-loader?limit=1024&name=images/[hash:8].[name].[ext]"}
         ]
     },
     plugins: plugins,

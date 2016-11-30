@@ -1,0 +1,8 @@
+@import "../../scss/base";
+@import "../../scss/bootstrap/navbar";
+@import "../../scss/bootstrap/navs";
+@import "../../scss/bootstrap/dropdowns";
+
+.nav > li > a{
+    padding: 15px;
+}

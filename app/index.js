@@ -1,6 +1,26 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from  'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, Link, browserHistory} from 'react-router';
 
-const wellcome = <h1>Wellcome interview mock-api. Hi.</h1>
+import C_Header from './components/C_Header/C_Header';
 
-ReactDOM.render(wellcome, document.getElementById('root'));
+class Layout extends React.Component {
+    render() {
+        return (
+            <C_Header></C_Header>
+        );
+    }
+}
+;
+
+class App extends React.Component {
+    render() {
+        return (
+            <Router history={browserHistory}>
+                <Route path="/web" component={Layout}></Route>
+            </Router>
+        );
+    }
+}
+
+ReactDOM.render(<App></App>, document.getElementById('root'));

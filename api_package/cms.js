@@ -22,7 +22,7 @@ var router = express.Router();
  * @type {[type]}
  */
 router.get('/userInfo', function (req, res, next) {
-    var reqBody = req.query;
+    var reqQuery = req.query;
     res.json({
         status: 'ok',
         errorCode: '000000',
@@ -31,6 +31,21 @@ router.get('/userInfo', function (req, res, next) {
             name: 'Jack',
             age: 14,
             desc: 'Hello. My name is Jack, from UK.'
+        }
+    });
+});
+
+router.post('/userInfo/:id', function(req, res, next){
+    var reqBody = req.body;
+    console.log(req.body.name);
+    res.json({
+        status: 'ok',
+        errorCode: '000000',
+        errorMsg: 'success',
+        results: {
+            text: 'You send the body & param',
+            body: reqBody,
+            id: req.params.id
         }
     });
 });
