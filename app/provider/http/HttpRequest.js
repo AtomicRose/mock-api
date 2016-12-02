@@ -1,16 +1,15 @@
 import extend from '../extend';
 
 let HttpRequest = {
-    get: function (url, options) {
+    get: function (base, options) {
         let promise = new Promise(function (resolve, reject) {
-            request(resolve, reject, 'GET', url, '', options);
+            request(resolve, reject, 'GET', base.url, base.data, options);
         });
         return promise;
     },
-    post: function (url, data, options) {
-        console.log(data);
+    post: function (base, options) {
         let promise = new Promise(function (resolve, reject) {
-            request(resolve, reject, 'POST', url, data, options);
+            request(resolve, reject, 'POST', base.url, base.data, options);
         });
         return promise;
     }
@@ -41,7 +40,7 @@ function request(resolve, reject, type, url, data, options) {
             if (oReq.status === 200) {
                 resolve(this.response);
             } else {
-                reject(new Error(this.statusText));
+                reject(this.response);
             }
         }
     }

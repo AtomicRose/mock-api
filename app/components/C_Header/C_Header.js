@@ -7,14 +7,20 @@ import HttpRequest from '../../provider/http/HttpRequest';
 
 class C_Header extends React.Component {
     render() {
-        HttpRequest.get('http://localhost:3000/api/cms/userInfo').then(function(res){
+        HttpRequest.get({
+            url: 'http://localhost:3000/api/cms/userInfo',
+            data: ''
+        }).then(function(res){
             console.log(res);
         },function(){
 
         });
-        HttpRequest.post('http://localhost:3000/api/cms/userInfo/222', {
-            name: 'jack',
-            age: 11
+        HttpRequest.post({
+            url: 'http://localhost:3000/api/cms/userInfo/222',
+            data: {
+                name: 'jack',
+                age: 11
+            }
         }).then(function(res){
             console.log(res);
         },function(){
