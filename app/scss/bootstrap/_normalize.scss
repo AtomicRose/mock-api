@@ -79,6 +79,13 @@ template {
   display: none;
 }
 
+.hidden{
+  display: none;
+}
+.show{
+  display: block;
+}
+
 // Links
 // ==========================================================================
 
@@ -88,6 +95,7 @@ template {
 
 a {
   background-color: transparent;
+  cursor: pointer;
 }
 
 //

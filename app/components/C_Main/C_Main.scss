@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    width: 100vm;
+    .main-sidebar {
+        max-width: 300px;
+        min-width: 150px;
+        overflow-x: auto;
+        border-right: 2px solid #ccc;
+    }
+    .main-content {
+        flex: 1;
+    }
+}

@@ -12,6 +12,7 @@ var path = require('path');
 var fs = require('fs');
 var fileBlock = require('../generateMethod/fileBlock');
 var generateHtml = require('../generateMethod/generateHtml');
+var achieve_sys = require('../api_achieve/achieve_sys');
 
 
 /**
@@ -51,5 +52,57 @@ router.get('/generateDocHtml', function (req, res, next) {
 
     });
 });
+/**
+ * @id          sys-002
+ * @requestType GET
+ * @method      获取文档对照数据表
+ * @uri         /contrastTable
+ * @description 获取各系统的mock-api文件对照表
+ * @extra
+ * @editor      Atomer  2016-12-6 16:26:38
+ * @type {[type]}
+ */
+router.get('/contrastTable', function (req, res, next) {
+    achieve_sys.getContrastTable(function (value) {
+        if (value) {
+            res.json({
+                status: 'ok',
+                errorCode: '000000',
+                errorMsg: 'ok',
+                results: value
+            });
+        } else {
+            res.json({
+                status: 'error',
+                errorCode: '-9999',
+                errorMsg: 'read the contrast.json error.',
+                results: ''
+            });
+        }
+    })
+});
+
+router.get('/fileDoc/:fileName', function (req, res, next) {
+    var fileName = req.params.fileName;
+    achieve_sys.getFileDoc(fileName, function (value) {
+        if (value) {
+            res.json({
+                status: 'ok',
+                errorCode: '000000',
+                errorMsg: 'ok',
+                results: value
+            });
+        } else {
+            res.json({
+                status: 'error',
+                errorCode: '-9999',
+                errorMsg: 'read this file:' + fileName + ' error.',
+                results: ''
+            });
+        }
+    })
+});
+
+
 
 module.exports = router;

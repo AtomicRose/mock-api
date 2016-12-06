@@ -1,4 +1,5 @@
 var extend = require("../extend");
+import './Dialog.scss';
 
 var defaults = {
     title: '温馨提示',

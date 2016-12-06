@@ -73,7 +73,10 @@ function writeToJson(o, callback) {
             if (o.blockObj[i].tag === 'fileTag') {
                 currentContrast.fileTag = o.blockObj[i].value;
             }
-            if (currentContrast.hasOwnProperty('system') && currentContrast.hasOwnProperty('fileTag')) {
+            if (o.blockObj[i].tag === 'fileDescription') {
+                currentContrast.fileDescription = o.blockObj[i].value;
+            }
+            if (currentContrast.hasOwnProperty('system') && currentContrast.hasOwnProperty('fileTag') && currentContrast.hasOwnProperty('fileDescription')) {
                 break;
             }
         }
@@ -98,6 +101,7 @@ function writeToJson(o, callback) {
         }
         recordObj[currentContrast.system][currentContrast.fileTag].currentFile = fileName;
         recordObj[currentContrast.system][currentContrast.fileTag].pastFiles.push(fileName);
+        recordObj[currentContrast.system][currentContrast.fileTag].fileDescription = currentContrast.fileDescription;
         if(recordObj[currentContrast.system][currentContrast.fileTag].pastFiles.length>3){
             var fname = recordObj[currentContrast.system][currentContrast.fileTag].pastFiles.shift();
             fs.unlink(path.join(__dirname, '../generate_file/data/'+fname), function(err){
