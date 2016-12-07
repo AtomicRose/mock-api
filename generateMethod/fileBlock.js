@@ -3,6 +3,8 @@
 const fs = require('fs');
 const logger = require('../helper/logger');
 const tagRegex = require('./tagRegex');
+const StringDecoder = require('string_decoder').StringDecoder;
+const decoder = new StringDecoder('utf-8');
 
 let fileBlock = {};
 fileBlock.get = (filePath, callback)=> {
@@ -15,7 +17,7 @@ fileBlock.get = (filePath, callback)=> {
     });
 };
 function readIt(fd, filePath, callback) {
-    let buf = new Buffer(64);
+    let buf = new Buffer(8192);
     let readBytes = 0;
     let content = '';
     let lastStr = '';
@@ -27,11 +29,14 @@ function readIt(fd, filePath, callback) {
                 logger.error(err);
             }
             readBytes = readBytes + bytes;
-            let bufStr = buf.slice(0, bytes).toString();
+            let allBuf = Buffer.concat([Buffer.from(lastStr), buf])
+            let bufStr = allBuf.toString();
+
             //split lastStr add this line. then push the matched line to the array.
             let split_a = (lastStr + bufStr).split('\r\n');
             //if the array length >2 . Operate the array except the last.
             if (split_a.length > 1) {
+                lastStr = '';
                 for (let i = 0, len = split_a.length; i < len - 1; i++) {
                     //match this line
                     let docObj = matchLine(split_a[i]);
@@ -42,7 +47,7 @@ function readIt(fd, filePath, callback) {
                 }
             }
             // add the last item to the lastStr
-            lastStr = split_a[split_a.length - 1];
+            lastStr += split_a[split_a.length - 1];
 
             content += bufStr;
             if (bytes === buf.length) {

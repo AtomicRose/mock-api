@@ -1,0 +1,78 @@
+@import "../../scss/base";
+.doc-html{
+    padding: 10px;
+    font-size: 16px;
+    color: #666;
+    background: #efefef;
+    *{
+        box-sizing: border-box;
+    }
+    .doc-item,
+    .doc-param,
+    .param-header{
+        padding: 8px 10px 8px 10px;
+        width: 100%;
+        background: #fff;
+        float: left;
+        box-shadow:2px 2px 3px rgba(0,0,0,.4);
+    }
+    .param-header{
+        background: #fcf8e3;
+        box-shadow: none;
+        .t-head,
+        .t-headl{
+            width: 15%;
+            float: left;
+            font-size: 14px;
+            border-right: 1px solid #ccc;
+            text-align: center;
+        }
+        .t-headl{
+            width: 40%;
+        }
+    }
+    .params{
+        width: 15%;
+        float: left;
+        text-align: center;
+        color: #666;
+    }
+    .param-desc{
+        width: 40%;
+        text-align: left;
+    }
+    .label{
+        color: #999;
+        font-weight: bold;
+        background: #CCC;
+        border-radius: 4px 0 0 4px;
+        padding: 5px 10px 5px 5px;
+    }
+    .text{
+        padding: 5px;
+        line-height: 150%;
+    }
+    .doc-system,
+    .doc-fileTag,
+    .doc-requestType,
+    .doc-uri
+    {
+        width: 50%;
+    }
+    .text-requestType{
+        border-radius: 4px;
+        margin-left: 5px;
+    }
+    .value-GET{
+        background: $brand-info;
+    }
+    .value-POST{
+        background: $brand-warning;
+    }
+    .text-system{
+
+    }
+    .doc-id{
+        margin-top: 20px;
+    }
+}

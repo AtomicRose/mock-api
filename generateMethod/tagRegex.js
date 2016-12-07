@@ -14,7 +14,8 @@ const tagRegex = {
         author: /\*\s*\@author.*/g,
         fileDescription: /\*\s*\@fileDescription.*/g,
         baseUri: /\*\s*\@baseUri.*/g,
-        system: /\*\s*\@system.*/g
+        system: /\*\s*\@system.*/g,
+        editor: /\*\s*\@editor.*/g
         //uri: /(?:get|post|delete|put)\((?:\'|\")+(?:\w|\/|\\)*(?:\'|\")+\s*\,\s*function/g,
     },
     operate: {
@@ -30,7 +31,8 @@ const tagRegex = {
         author: /\*\s*\@author\s*/g,
         fileDescription: /\*\s*\@fileDescription\s*/g,
         baseUri: /\*\s*\@baseUri\s*/g,
-        system: /\*\s*\@system\s*/g
+        system: /\*\s*\@system\s*/g,
+        editor: /\*\s*\@editor\s*/g
         //uri1: /(?:get|post|delete|put)\((?:\'|\")+/g,
         //uri2: /(?:\'|\")+\s*\,\s*function/g
     },

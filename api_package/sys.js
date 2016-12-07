@@ -17,10 +17,11 @@ var achieve_sys = require('../api_achieve/achieve_sys');
 
 /**
  * @id          sys-001
- * @requestType GET
  * @method      生成接口文档
+ * @requestType GET
  * @uri         /generateDocHtml
  * @description 通过query方式传入api_package/路径下的子路径来生成对应的接口文档。
+ * @param       {key: subDir}      {type: string}  {required: false}    {default: null}    {desc: api_package下的子路径，以"/"开头，例如:/subdir}
  * @param       {key: subDir}      {type: string}  {required: false}    {default: null}    {desc: api_package下的子路径，以"/"开头，例如:/subdir}
  * @extra
  * @editor      Atomer  2016-11-16 09:56:33
@@ -54,10 +55,10 @@ router.get('/generateDocHtml', function (req, res, next) {
 });
 /**
  * @id          sys-002
- * @requestType GET
  * @method      获取文档对照数据表
+ * @requestType GET
  * @uri         /contrastTable
- * @description 获取各系统的mock-api文件对照表
+ * @description 获取各系统的mock-api 文件对照表
  * @extra
  * @editor      Atomer  2016-12-6 16:26:38
  * @type {[type]}

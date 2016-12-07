@@ -11,7 +11,7 @@ class C_Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tagList:[]
+            tagList: []
         }
     }
 
@@ -19,6 +19,10 @@ class C_Sidebar extends React.Component {
         this.renderTagList(StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemObj'));
         PubSub.subscribe('selectCurrentSystem', (msg, data)=> {
             this.renderTagList(data);
+            for (let key in data) {
+                this.handleSelectTag(key, data[key]);
+                break;
+            }
         });
     }
 
@@ -27,10 +31,10 @@ class C_Sidebar extends React.Component {
         var navId = 0;
         for (var key in obj) {
             items.push(function (k, o, t) {
-                return (<li className="list-group-item" key={'nav_' + navId++} onClick={()=>t.handleSelectTag(k,o)}>
-                        <h4 className="list-group-item-heading">{k}</h4>
-                        <p className="list-group-item-text">{o.fileDescription}</p>
-                    </li>)
+                return (<li className="list-group-item" key={'nav_' + navId++} onClick={()=>t.handleSelectTag(k, o)}>
+                    <h4 className="list-group-item-heading">{k}</h4>
+                    <p className="list-group-item-text">{o.fileDescription}</p>
+                </li>)
             }(key, obj[key], this));
         }
         this.setState({
@@ -39,16 +43,10 @@ class C_Sidebar extends React.Component {
         return items;
     }
 
-    handleSelectTag(k,o){
-        console.log(o);
+    handleSelectTag(k, o) {
         StorageConfig.SIDEBAR_TAG_STORAGE.putItem('currentTagName', k);
         StorageConfig.SIDEBAR_TAG_STORAGE.putItem('currentTagObj', o);
-        SysService.getFileDoc(o.currentFile).then(function(res){
-            console.log(res);
-            //TODO PubSub to the DocHtml component
-        },function(res){
-            dialog.toast(res.errorCode + res.errorMsg);
-        });
+        PubSub.publish('selectCurrentTag', o);
     }
 
     render() {
