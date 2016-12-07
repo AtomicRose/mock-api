@@ -30,11 +30,13 @@ class C_DocHtml extends React.Component {
     }
 
     componentWillMount() {
-        SysService.getFileDoc(StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj').currentFile).then((res)=> {
-            this.renderDocHtml(res.results);
-        }, (res)=> {
-            dialog.toast(res.errorCode + res.errorMsg);
-        });
+        if (StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj')) {
+            SysService.getFileDoc(StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj').currentFile).then((res)=> {
+                this.renderDocHtml(res.results);
+            }, (res)=> {
+                dialog.toast(res.errorCode + res.errorMsg);
+            });
+        }
         PubSub.subscribe('selectCurrentTag', (msg, data)=> {
             SysService.getFileDoc(data.currentFile).then((res)=> {
                 this.renderDocHtml(res.results);

@@ -16,6 +16,9 @@
         float: left;
         box-shadow:2px 2px 3px rgba(0,0,0,.4);
     }
+    .doc-param{
+        border-bottom: 1px solid #ccc;
+    }
     .param-header{
         background: #fcf8e3;
         box-shadow: none;
@@ -44,7 +47,7 @@
     .label{
         color: #999;
         font-weight: bold;
-        background: #CCC;
+        background: #e6e6e6;
         border-radius: 4px 0 0 4px;
         padding: 5px 10px 5px 5px;
     }
@@ -59,6 +62,13 @@
     {
         width: 50%;
     }
+    .doc-id{
+        display: flex;
+    }
+    .text-id{
+        flex: 1;
+        background: rgba(255,0,0, .1);
+    }
     .text-requestType{
         border-radius: 4px;
         margin-left: 5px;
@@ -71,6 +81,10 @@
     }
     .text-system{
 
+    }
+    .text-editor{
+        color: #aaa;
+        font-size: 14px;
     }
     .doc-id{
         margin-top: 20px;
