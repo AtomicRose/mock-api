@@ -30,7 +30,7 @@ class C_DocHtml extends React.Component {
     }
 
     componentWillMount() {
-        if (StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj')) {
+        if (StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj') && StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj').currentFile) {
             SysService.getFileDoc(StorageConfig.SIDEBAR_TAG_STORAGE.getItem('currentTagObj').currentFile).then((res)=> {
                 this.renderDocHtml(res.results);
             }, (res)=> {
@@ -60,7 +60,7 @@ class C_DocHtml extends React.Component {
         //         }(key, pathObj[key]));
         //     }
         // }
-        if (blockArray.length) {
+        if (blockArray && blockArray.length) {
             let shouldTableHeader = false;
             for (let i = 0, len = blockArray.length; i < len; i++) {
                 tempArray.push(function (o) {
@@ -78,7 +78,7 @@ class C_DocHtml extends React.Component {
                     if (typeof o.value === 'object' && o.tag === 'param') {
                         let paramArray = [];
                         if (shouldTableHeader) {
-                            paramArray.push(<div className="param-header">
+                            paramArray.push(<div key={'docId_' + countId++} className="param-header">
                                 <div className="t-head">参数名称</div>
                                 <div className="t-head">类型</div>
                                 <div className="t-head">是否必填</div>

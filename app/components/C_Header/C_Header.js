@@ -12,7 +12,7 @@ class C_Header extends React.Component {
         super(props);
         this.state = {
             navItems: [],
-            currentSystem: StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName') ? StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName') : 'API-System',
+            currentSystem: StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName') ? StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName') : '选择API系统',
             navItemClass: "dropdown-menu"
         }
     }
@@ -21,7 +21,7 @@ class C_Header extends React.Component {
         this.getNavItems();
     }
 
-    getNavItems() {
+    getNavItems(callback) {
         SysService.getContrast('/contrastTable').then((res)=> {
             let listObj = res.results;
             var items = [];
@@ -34,6 +34,12 @@ class C_Header extends React.Component {
             this.setState({
                 navItems: items
             });
+            if(StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName')){
+                StorageConfig.HEADER_NAV_STORAGE.putItem('currentSystemObj', listObj[StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName')]);
+            }
+            if (callback) {
+                callback(listObj);
+            }
         }, (res)=> {
             Dialog.toast(res.errorCode + res.errorMsg);
         });
@@ -55,6 +61,22 @@ class C_Header extends React.Component {
         PubSub.publish('selectCurrentSystem', contrastObj);
     }
 
+    handleGenerateDoc() {
+        SysService.generateDoc(encodeURIComponent(this.refs.subDir.value)).then((res)=> {
+            if (res.status === 'ok') {
+                Dialog.toast('生成文档成功');
+                this.refs.subDir.value = '';
+                this.getNavItems((listObj)=> {
+                    this.handleSelectSystem(StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemName'), StorageConfig.HEADER_NAV_STORAGE.getItem('currentSystemObj'));
+                });
+            } else {
+                Dialog.toast(res.errorCode + res.errorMsg);
+            }
+        }, (res)=> {
+            Dialog.toast(res.errorCode + res.errorMsg);
+        });
+    }
+
     render() {
         return (
             <div className="navbar navbar-default">
@@ -65,8 +87,6 @@ class C_Header extends React.Component {
                     {/*header-nav*/}
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li className="active"><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
                             <li className="dropdown">
                                 <a className="dropdown-toggle"
                                    onClick={()=>this.handleCtrlNavItems()}>{this.state.currentSystem}
@@ -76,6 +96,17 @@ class C_Header extends React.Component {
                                 </ul>
                             </li>
                         </ul>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li><a href="#">帮助</a></li>
+                        </ul>
+                        <form className="navbar-form navbar-right" role="search">
+                            <div className="form-group">
+                                <input type="text" className="form-control" ref="subDir" placeholder="输入文档文件夹路径"/>
+                            </div>
+                            <button type="button" className="btn btn-default mgl-10"
+                                    onClick={()=>this.handleGenerateDoc()}>生成文档
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

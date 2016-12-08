@@ -8,8 +8,8 @@ var ejs = require('ejs');
 
 // the page routes require
 var routes = require('./routes/index');
-var api_cms = require('./api_package/cms');
-var api_sys = require('./api_package/sys');
+var api_test1 = require('./api_package/test/test1');
+var api_sys = require('./api_package/system/sys');
 
 var app = express();
 
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', routes);
 
 // the api route use
-app.use('/api/cms', api_cms);
+app.use('/api/test', api_test1);
 app.use('/api/sys', api_sys);
 
 // catch 404 and forward to error handler

@@ -18,7 +18,7 @@ function readDir(dirPath, callback) {
     for (var i = 0; i < files.length; i++) {
         var info = fs.lstatSync(dirPath + '/' + files[i]);
         if (info.isDirectory()) {
-            readDir(dirPath + '/' + files[i])
+            readDir(dirPath + '/' + files[i], callback)
         }
         if (info.isFile()) {
             count++;
@@ -36,7 +36,7 @@ function readDir(dirPath, callback) {
                             if(value===true){
                                 sc--;
                             }else{
-                                callback(value);
+                                callback(false);
                                 return false;
                             }
                         });

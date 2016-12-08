@@ -1,7 +1,7 @@
 /**
- * @system              cms
- * @fileTag             CMS
- * @baseUri             /cms
+ * @system              Mock测试
+ * @fileTag             test2
+ * @baseUri             /test
  * @fileDescription     The cms api file.
  * @author              Atomer
  */
@@ -10,9 +10,9 @@ var router = express.Router();
 
 
 /**
- * @id          cms-110101
- * @requestType GET
+ * @id          test2-001
  * @method      get user infomation.
+ * @requestType GET
  * @uri         /userInfo
  * @description the api for get user information by id.
  * @param       {key: userId}      {type: number}  {required: true}    {default: null}    {desc: The user's id in database.}
@@ -51,9 +51,9 @@ router.post('/userInfo/:id', function(req, res, next){
 });
 
 /**
- * @id          cms-22222
- * @requestType GET
+ * @id          test2-002
  * @method      get user name
+ * @requestType GET
  * @uri         /getUserName
  * @description the api for get user information by id.
  * @param       {key: userId}      {type: number}  {required: true}    {default: null}    {desc: The user's id in database.}
