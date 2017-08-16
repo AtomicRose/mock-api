@@ -1,7 +1,7 @@
 /**
  * @system              Mock测试
  * @fileTag             test2
- * @baseUri             /test
+ * @baseUri             /api/test
  * @fileDescription     The cms api file.
  * @author              Atomer
  */
