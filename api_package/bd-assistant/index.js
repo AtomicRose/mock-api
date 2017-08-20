@@ -29,7 +29,7 @@ router.get('/api/v1/userCenter', function (req, res, next) {
         "user": "baishen.fang@mingyizhudao.com",
         "userName": "\u65b9\u67cf\u8703",
         "avatar": "https:\/\/p.qlogo.cn\/bizmail\/p0Sh0ibb0MOsH9dWUSoXvP1V57TO2ZnnkK27XekJkQmZt3icESbibwMaQ\/0",
-        "leading_group": '',
+        "leading_group": 13,
         "city": [],
         "teamMemberCounts": 5,
         "unDistrictList": [
