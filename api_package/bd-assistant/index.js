@@ -346,7 +346,63 @@ router.get('/api/v1/:id/visitRecord', function (req, res, next) {
     },
     "message": "OK"
   });
-})
+});
+
+router.get('/api/v1/doctor-kb', function (req, res, next) {
+  res.json({
+    "code": 1000000,
+    "data": {
+      "list": [
+        {
+          "avatar_url": [
+            {
+              "key": "string",
+              "tag": "string",
+              "type": "string"
+            }
+          ],
+          "city_name": "string",
+          "department_name": "string",
+          "hospital_name": "string",
+          "id": 0,
+          "image": "string",
+          "is_verified": "string",
+          "medical_title": "string",
+          "name": "aaa",
+          "order_count": 0,
+          "referrer_name": "string",
+          "register_id": 0,
+          "signed_status": "string"
+        },
+        {
+          "avatar_url": [
+            {
+              "key": "string",
+              "tag": "string",
+              "type": "string"
+            }
+          ],
+          "city_name": "string",
+          "department_name": "string",
+          "hospital_name": "string",
+          "id": 2,
+          "image": "string",
+          "is_verified": "string",
+          "medical_title": "string",
+          "name": "bbb",
+          "order_count": 0,
+          "referrer_name": "string",
+          "register_id": 0,
+          "signed_status": "string"
+        }
+      ],
+      "page":  parseInt(req.query.page),
+      "page_size": 10,
+      "size": 12
+    },
+    "message": "OK"
+  });
+});
 
 
 module.exports = router;
